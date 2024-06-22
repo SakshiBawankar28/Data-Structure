@@ -1,8 +1,19 @@
+import java.util.Stack;
+
 public class LinkedList {
 	private Node head;
 
 	public LinkedList() {
 		head = null;
+	}
+	
+	//getter & setter
+	public Node getHead() {
+		return head;
+	}
+
+	public void setHead(Node head) {
+		this.head = head;
 	}
 
 	// insert method
@@ -95,7 +106,7 @@ public class LinkedList {
 	public void display() {
 		Node temp = head;
 		while (temp != null) {
-			System.out.print(temp.getData() + " ");
+			System.out.print(temp.getData() + "  ");
 			temp = temp.getNext();
 		}
 		System.out.println();
@@ -159,7 +170,55 @@ public class LinkedList {
 		Node del = prev.getNext();
 		prev.setNext(del.getNext());
 		return false;
+	}
+	
+	//reverse methods
+	//1. using stack
+	public void displayReverseUsingStack()
+	{
+		Stack<Node> stack = new Stack<Node>();
+		Node temp = head;
 		
+		while(temp != null)
+		{
+			stack.push(temp);
+			temp = temp.getNext();
+		}
+		while(!stack.empty())
+		{
+			System.out.print(stack.pop().getData()+"  ");
+		}
+	}
+	
+	//2. using recursive
+	public void displayReverseUsingRecursion(Node temp)
+	{
+		if(temp == null)
+		{
+			return;
+		}
+		displayReverseUsingRecursion(temp.getNext());
+		System.out.print(temp.getData() + "  ");
+	}
+	
+	//3. Using swap
+	public void displayReverseUsingSwapping()
+	{
+		if(head == null  ||  head.getNext() == null)
+		{
+			return ;
+		}
+		Node n1 = head;
+		Node n2 = head.getNext();
+		while(n2 != null)
+		{
+			Node n3 = n2.getNext();
+			n2.setNext(n1);
+			n1 = n2;
+			n2 = n3;
+		}
+		head.setNext(null);
+		head = n1;
 	}
 }
 

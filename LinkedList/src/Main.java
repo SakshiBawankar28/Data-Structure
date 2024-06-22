@@ -41,6 +41,15 @@ public class Main {
 		li.display();
 		li.deleteByPosition(6);
 		li.display();
+		
+		System.out.println("\nReverse using stack");
+		li.displayReverseUsingStack();
+		System.out.println("\nReverse using recursion");
+		li.displayReverseUsingRecursion(li.getHead());
+//		li.display();
+		System.out.println("\nReverse using swapping");
+		li.displayReverseUsingSwapping();
+		li.display();
 	}
 
 }
